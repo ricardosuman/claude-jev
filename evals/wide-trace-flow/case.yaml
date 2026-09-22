@@ -1,0 +1,33 @@
+schema_version: "1.0"
+name: wide-trace-flow
+tags: [wide]
+context:
+  scaffold_script: scaffold.sh
+execution:
+  prompt: "Pick the endpoint that creates a record and assigns a generated tracking identifier. Explain how that request reaches persistence, naming each source file that participates: the request handler, the service method, the record factory, and the in-memory persistence layer."
+  max_turns: 30
+  timeout_seconds: 300
+  allowed_tools: [Read, Glob, Grep]
+runs: 3
+graders:
+  - type: regex
+    name: "names the shipments route"
+    target: last_message
+    pattern: "src/routes/shipments\\.ts"
+  - type: regex
+    name: "names the shipment service"
+    target: last_message
+    pattern: "src/services/shipmentService\\.ts"
+  - type: regex
+    name: "names the shipment model"
+    target: last_message
+    pattern: "src/models/shipment\\.ts"
+  - type: regex
+    name: "names the store"
+    target: last_message
+    pattern: "src/lib/store\\.ts"
+  - type: regex
+    name: jev hooks ran (/jev registered)
+    target: trace
+    pattern: "\"name\":\"jev\",\"description\":\"Jev ledger"
+    arm: with-only

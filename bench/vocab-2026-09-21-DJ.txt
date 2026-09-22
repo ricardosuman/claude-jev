@@ -1,0 +1,32 @@
+
+arm D (opus/medium): 12 runs, 7 passed, timeouts 0, bun test green in 12
+metric              median                   p90    Δ vs A
+pass %               58.3%                                
+cost/pass          $0.3037                                
+cache hit %          95.7%                                
+costUsd            $0.1476               $0.2914          
+input                   60                   210          
+output                2472                  5248          
+cacheRead           240678                779280          
+cacheWrite           17707                 33011          
+durationMs           33137                 68692          
+turns                   11                    35          
+models (cost share): claude-sonnet-5 57%, claude-opus-5 10%, claude-haiku-4-5-20251001 32%
+jev: 12 calls (12 ok), p50 710 ms, tokens 8682 in / 1080 out
+routing: 12 decisions, 92% applied; chosen sonnet/medium ×6, haiku/medium ×6
+
+arm J (opus/medium): 12 runs, 7 passed, timeouts 0, bun test green in 12
+metric              median                   p90    Δ vs A
+pass %               58.3%                                
+cost/pass          $0.2894                                
+cache hit %          95.6%                                
+costUsd            $0.1086               $0.2857          
+input                   46                   186          
+output                2384                  5244          
+cacheRead           222095                725819          
+cacheWrite           15616                 27542          
+durationMs           31993                 70958          
+turns                   11                    29          
+models (cost share): claude-sonnet-5 47%, claude-opus-5 28%, claude-haiku-4-5-20251001 26%
+jev: 13 calls (13 ok), p50 696 ms, tokens 12212 in / 1169 out
+routing: 12 decisions, 83% applied; chosen sonnet/medium ×6, haiku/medium ×6

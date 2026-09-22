@@ -1,0 +1,20 @@
+schema_version: "1.0"
+name: hard-lru-refactor
+tags: [hard]
+context:
+  scaffold_script: scaffold.sh
+execution:
+  prompt: "LruCache in src/lru.ts gets slow with the large capacities we now use (around 50k entries), because every operation scans an array. Please rewrite it so get, peek, set and delete are O(1). Other code relies on its exact current behaviour, so nothing observable may change."
+  max_turns: 25
+  timeout_seconds: 600
+  allowed_tools: [Read, Glob, Grep, Edit, Write, Bash]
+runs: 3
+graders:
+  - type: command
+    name: "hidden tests pass"
+    run: "cp \"$CASE_DIR/hidden.spec.ts\" src/ && bun test"
+  - type: regex
+    name: jev hooks ran (/jev registered)
+    target: trace
+    pattern: "\"name\":\"jev\",\"description\":\"Jev ledger"
+    arm: with-only

@@ -1,0 +1,26 @@
+schema_version: "1.0"
+name: debug-retry
+tags: [debug]
+context:
+  scaffold_script: scaffold.sh
+execution:
+  prompt: "`bun test` fails in this project: retry() gives up too early. Find the bug and fix it without changing any test."
+  max_turns: 15
+  timeout_seconds: 300
+  allowed_tools: [Read, Glob, Grep, Edit, Write, Bash]
+runs: 3
+graders:
+  - type: regex
+    name: "loop runs every attempt"
+    target: { source: file, path: src/retry.ts }
+    pattern: "attempts\\s*-\\s*1"
+    match: not_contains
+  - type: regex
+    name: "test left as it was"
+    target: { source: file, path: src/retry.spec.ts }
+    pattern: "expect\\(calls\\)\\.toBe\\(3\\)"
+  - type: regex
+    name: jev hooks ran (/jev registered)
+    target: trace
+    pattern: "\"name\":\"jev\",\"description\":\"Jev ledger"
+    arm: with-only

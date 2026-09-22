@@ -1,0 +1,24 @@
+schema_version: "1.0"
+name: vocab-change
+tags: [vocab]
+context:
+  scaffold_script: scaffold.sh
+execution:
+  prompt: "A reservation confirmation mark must be eight uppercase letters. Spurn any other shape. Introduce the rule among common validators and call it wherever that mark is first kept. Do not rewrite unrelated modules."
+  max_turns: 30
+  timeout_seconds: 300
+  allowed_tools: [Read, Glob, Grep, Edit, Write, Bash]
+runs: 3
+graders:
+  - type: command
+    name: "hidden tests pass"
+    run: "cp \"$CASE_DIR/hidden.spec.ts\" src/ && bun test"
+  - type: regex
+    name: "tribute steward not rewritten"
+    target: { source: file, path: src/stewards/tribute.ts }
+    pattern: "TRIBUTE_BATCH\\s*=\\s*40"
+  - type: regex
+    name: jev hooks ran (/jev registered)
+    target: trace
+    pattern: "\"name\":\"jev\",\"description\":\"Jev ledger"
+    arm: with-only

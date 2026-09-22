@@ -1,0 +1,25 @@
+schema_version: "1.0"
+name: debug-median
+tags: [debug]
+context:
+  scaffold_script: scaffold.sh
+execution:
+  prompt: "`bun test` fails in this project: median() returns wrong values. Find the bug and fix it without changing any test."
+  max_turns: 15
+  timeout_seconds: 300
+  allowed_tools: [Read, Glob, Grep, Edit, Write, Bash]
+runs: 3
+graders:
+  - type: regex
+    name: "median sorts numerically again"
+    target: { source: file, path: src/stats.ts }
+    pattern: "sort\\(\\s*\\(?a, b\\)?\\s*=>\\s*a - b\\s*\\)"
+  - type: regex
+    name: "test left as it was"
+    target: { source: file, path: src/stats.spec.ts }
+    pattern: "expect\\(median\\(\\[4, 1, 3, 2\\]\\)\\)\\.toBe\\(2\\.5\\)"
+  - type: regex
+    name: jev hooks ran (/jev registered)
+    target: trace
+    pattern: "\"name\":\"jev\",\"description\":\"Jev ledger"
+    arm: with-only

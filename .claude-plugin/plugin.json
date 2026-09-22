@@ -1,0 +1,143 @@
+{
+  "name": "jev",
+  "version": "0.1.0",
+  "description": "Cuts harness cost with the Jev classifier (TypeSafe AI). A fail-open Jev client, a ledger of every Jev call and per-turn session cost, /jev to print its summary, and an opt-in router that picks a cheaper model and lower effort at cache-cold points.",
+  "author": {
+    "name": "Ricardo Suman"
+  },
+  "userConfig": {
+    "timeoutMs": {
+      "type": "number",
+      "title": "Jev timeout (ms)",
+      "description": "How long a Jev call may take before it is abandoned and the turn goes on without it.",
+      "required": false,
+      "default": 1500
+    },
+    "router": {
+      "type": "string",
+      "title": "Model router",
+      "description": "\"on\": Jev picks the model and effort for each conversation and each inherited subagent, never above the one you are on. Your prompt text is sent to TypeSafe AI. The JEV_COMPONENTS environment variable, when set, overrides this.",
+      "required": false,
+      "default": "off",
+      "options": ["off", "on"]
+    },
+    "shadow": {
+      "type": "string",
+      "title": "Shadow proposals",
+      "description": "\"on\": Jev records what the enabled components would do without changing the model, effort, tool result, files, compaction or available agents. The JEV_COMPONENTS environment variable, when set, overrides this.",
+      "required": false,
+      "default": "off",
+      "options": ["off", "on"]
+    },
+    "lanes": {
+      "type": "string",
+      "title": "Delegation lanes",
+      "description": "\"on\": when the router holds the current model for a hard session, offer a lane agent for self-contained work such as multi-file search, bounded implementation or verification. Delegation costs a context re-read, so it is not offered after a router downgrade. The JEV_COMPONENTS environment variable, when set, overrides this.",
+      "required": false,
+      "default": "off",
+      "options": ["off", "on"]
+    },
+    "find": {
+      "type": "string",
+      "title": "Relevant path suggestions",
+      "description": "\"on\": register jev-find so Jev can suggest which of up to 50 candidate paths matter for the current task. The model may ignore the suggestion. The JEV_COMPONENTS environment variable, when set, overrides this.",
+      "required": false,
+      "default": "off",
+      "options": ["off", "on"]
+    },
+    "toolDescribe": {
+      "type": "string",
+      "title": "Tool description deferral",
+      "description": "\"on\": ask Jev which Web, MCP-server, notebook and browser tool groups are probably needed for the task, deferring low-relevance groups behind ToolSearch. The JEV_COMPONENTS environment variable, when set, overrides this.",
+      "required": false,
+      "default": "off",
+      "options": ["off", "on"]
+    },
+    "models": {
+      "type": "string",
+      "title": "Router model allowlist",
+      "description": "Comma-separated model tiers Jev may choose; unknown names are ignored. JEV_MODELS overrides this.",
+      "required": false,
+      "default": "haiku,sonnet,opus"
+    },
+    "minConfidence": {
+      "type": "number",
+      "title": "Router minimum confidence",
+      "description": "A Jev routing answer below this confidence (0 to 1) leaves the model and effort as they are.",
+      "required": false,
+      "default": 0.7
+    },
+    "subtleThreshold": {
+      "type": "number",
+      "title": "Subtle correctness threshold",
+      "description": "A Jev subtle-correctness probability above this threshold (0 to 1) keeps the current model and effort.",
+      "required": false,
+      "default": 0.6
+    },
+    "offload": {
+      "type": "string",
+      "title": "Tool output offload",
+      "description": "\"on\": a Bash, WebFetch or MCP result over the offload threshold is saved whole under .claude/jev/ and the model gets its head, tail and the middle parts Jev finds needed for the task. The task and the tool output are sent to TypeSafe AI. The JEV_COMPONENTS environment variable, when set, overrides this.",
+      "required": false,
+      "default": "off",
+      "options": ["off", "on"]
+    },
+    "offloadChars": {
+      "type": "number",
+      "title": "Offload threshold (chars)",
+      "description": "A tool result whose text is longer than this is offloaded (at least 1000).",
+      "required": false,
+      "default": 8000
+    },
+    "keepThreshold": {
+      "type": "number",
+      "title": "Offload keep threshold",
+      "description": "A middle part of an offloaded result is kept when Jev's probability that it is needed (0 to 1) is at least this.",
+      "required": false,
+      "default": 0.5
+    },
+    "offloadTimeoutMs": {
+      "type": "number",
+      "title": "Offload Jev timeout (ms)",
+      "description": "How long the offload's Jev call may take before the result falls back to plain head/tail.",
+      "required": false,
+      "default": 1500
+    },
+    "compact": {
+      "type": "string",
+      "title": "Jev-guided compaction",
+      "description": "\"on\" (experimental): once the context is between compactFromPct and compactToPct, at the end of a turn Jev judges to be a natural pause, the conversation is compacted. The last prompt and a summary of the answer are sent to TypeSafe AI. The JEV_COMPONENTS environment variable, when set, overrides this.",
+      "required": false,
+      "default": "off",
+      "options": ["off", "on"]
+    },
+    "compactFromPct": {
+      "type": "number",
+      "title": "Compaction window start (%)",
+      "description": "A natural-pause compaction is considered from this context fill (0 to 100).",
+      "required": false,
+      "default": 60
+    },
+    "compactToPct": {
+      "type": "number",
+      "title": "Compaction window end (%)",
+      "description": "At or above this context fill (0 to 100) the engine's own autocompact is left to act.",
+      "required": false,
+      "default": 85
+    },
+    "compactMinTurns": {
+      "type": "number",
+      "title": "Turns between compactions",
+      "description": "A natural-pause compaction waits at least this many turns after the last compaction.",
+      "required": false,
+      "default": 5
+    },
+    "pauseThreshold": {
+      "type": "number",
+      "title": "Pause threshold",
+      "description": "Jev's probability (0 to 1) that the task is at a natural pause needed to compact.",
+      "required": false,
+      "default": 0.8
+    }
+  }
+}

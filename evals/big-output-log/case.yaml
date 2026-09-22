@@ -1,0 +1,20 @@
+schema_version: "1.0"
+name: big-output-log
+tags: [big-output]
+context:
+  scaffold_script: scaffold.sh
+execution:
+  prompt: "Checkouts have been failing in prod since this morning's deploy. Run `bun run logs` to see this morning's production log, then fix the root cause in the code. We can't change the prod config today."
+  max_turns: 25
+  timeout_seconds: 300
+  allowed_tools: [Read, Glob, Grep, Edit, Write, Bash]
+runs: 3
+graders:
+  - type: command
+    name: "parseDuration accepts 1.5s, old units still work"
+    run: "bun -e \"import { parseDuration as p } from './src/config'; process.exit(p('1.5s') === 1500 && p('250ms') === 250 && p('2m') === 120000 ? 0 : 1)\" && bun test"
+  - type: regex
+    name: jev hooks ran (/jev registered)
+    target: trace
+    pattern: "\"name\":\"jev\",\"description\":\"Jev ledger"
+    arm: with-only

@@ -1,0 +1,31 @@
+schema_version: "1.0"
+name: change-rename-subtotal
+tags: [local-change]
+context:
+  scaffold_script: scaffold.sh
+execution:
+  prompt: "Rename the function subtotal to itemsTotal everywhere it is defined or called."
+  max_turns: 12
+  timeout_seconds: 300
+  allowed_tools: [Read, Glob, Grep, Edit, Write, Bash]
+runs: 3
+graders:
+  - type: regex
+    name: "itemsTotal defined"
+    target: { source: file, path: src/cart.ts }
+    pattern: "export function itemsTotal\\s*\\("
+  - type: regex
+    name: "no subtotal( left in cart.ts"
+    target: { source: file, path: src/cart.ts }
+    pattern: "\\bsubtotal\\("
+    match: not_contains
+  - type: regex
+    name: "no subtotal( left in the test"
+    target: { source: file, path: src/cart.spec.ts }
+    pattern: "\\bsubtotal\\("
+    match: not_contains
+  - type: regex
+    name: jev hooks ran (/jev registered)
+    target: trace
+    pattern: "\"name\":\"jev\",\"description\":\"Jev ledger"
+    arm: with-only

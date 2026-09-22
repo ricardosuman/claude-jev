@@ -1,0 +1,25 @@
+schema_version: "1.0"
+name: change-add-clamp
+tags: [local-change]
+context:
+  scaffold_script: scaffold.sh
+execution:
+  prompt: "Add an exported function clamp(n: number, min: number, max: number): number to src/stats.ts, and a test for it in src/stats.spec.ts."
+  max_turns: 12
+  timeout_seconds: 300
+  allowed_tools: [Read, Glob, Grep, Edit, Write, Bash]
+runs: 3
+graders:
+  - type: regex
+    name: "clamp exported"
+    target: { source: file, path: src/stats.ts }
+    pattern: "export (function clamp\\s*\\(|const clamp\\s*=)"
+  - type: regex
+    name: "clamp tested"
+    target: { source: file, path: src/stats.spec.ts }
+    pattern: "clamp\\("
+  - type: regex
+    name: jev hooks ran (/jev registered)
+    target: trace
+    pattern: "\"name\":\"jev\",\"description\":\"Jev ledger"
+    arm: with-only

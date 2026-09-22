@@ -1,0 +1,4 @@
+{
+  "description": "Jev ledger: a session.measure hook records each turn's context fill and session cost, /jev prints the ledger's summary, and /jev gains prints the cross-session usage log",
+  "modules": ["./register.ts"]
+}

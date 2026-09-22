@@ -1,0 +1,252 @@
+[
+  {
+    "file": "claude-code/mods/diff/hooks/register.ts",
+    "goal": "When is a base outcome kind recorded?",
+    "line": 96
+  },
+  {
+    "file": "claude-code/mods/diff/hooks/register.ts",
+    "goal": "What happens to an existing polling timer before a new poll is scheduled?",
+    "line": 287
+  },
+  {
+    "file": "claude-code/mods/diff/hooks/register.ts",
+    "goal": "Which screen condition is required for automatic opening?",
+    "line": 479
+  },
+  {
+    "file": "claude-code/mods/diff/hooks/register.ts",
+    "goal": "What does the PromptHint hook return after updating pane dimensions?",
+    "line": 670
+  },
+  {
+    "file": "claude-code/mods/diff/hooks/register.ts",
+    "goal": "How does the hook decide whether a tool call is an editing action?",
+    "line": 866
+  },
+  {
+    "file": "claude-code/mods/diff/tests/git/fetch-diff.test.ts",
+    "goal": "Which short-stat command is scripted for a tracked one-file diff?",
+    "line": 56
+  },
+  {
+    "file": "claude-code/mods/diff/tests/git/fetch-diff.test.ts",
+    "goal": "What file count is reported in totals-only mode?",
+    "line": 176
+  },
+  {
+    "file": "claude-code/mods/diff/tests/git/fetch-diff.test.ts",
+    "goal": "What file count and withholding flag are expected when untracked files are unavailable?",
+    "line": 270
+  },
+  {
+    "file": "claude-code/mods/diff/tests/git/fetch-diff.test.ts",
+    "goal": "What result kind is expected when a symbolic merge marker is ignored?",
+    "line": 373
+  },
+  {
+    "file": "claude-code/mods/diff/tests/git/fetch-diff.test.ts",
+    "goal": "What directory values are recorded during the deep-tree walk?",
+    "line": 491
+  },
+  {
+    "file": "claude-code/mods/diff/tests/register.test.ts",
+    "goal": "Which Git operations are expected on a shell command while the pane is open?",
+    "line": 93
+  },
+  {
+    "file": "claude-code/mods/diff/tests/register.test.ts",
+    "goal": "What repository work has happened immediately after opening the pane?",
+    "line": 275
+  },
+  {
+    "file": "claude-code/mods/diff/tests/register.test.ts",
+    "goal": "Which pane should open for the main-loop edit?",
+    "line": 481
+  },
+  {
+    "file": "claude-code/mods/diff/tests/register.test.ts",
+    "goal": "What simulated Git response does the delayed fetch use?",
+    "line": 640
+  },
+  {
+    "file": "claude-code/mods/diff/tests/register.test.ts",
+    "goal": "What text should the first command report before a repository is available?",
+    "line": 812
+  },
+  {
+    "file": "claude-code/mods/diff/tests/views/pane-view.test.ts",
+    "goal": "Is the rendered long-file body expected to be marked truncated?",
+    "line": 124
+  },
+  {
+    "file": "claude-code/mods/diff/tests/views/pane-view.test.ts",
+    "goal": "What property must hold when a long body is split into renderable leaves?",
+    "line": 206
+  },
+  {
+    "file": "claude-code/mods/diff/tests/views/pane-view.test.ts",
+    "goal": "What branch comparison label should be rendered for a supplied base?",
+    "line": 317
+  },
+  {
+    "file": "claude-code/mods/diff/tests/views/pane-view.test.ts",
+    "goal": "What headline is rendered when the current session has no changes?",
+    "line": 452
+  },
+  {
+    "file": "claude-code/mods/diff/tests/views/pane-view.test.ts",
+    "goal": "Which file remains selected in the inline listing?",
+    "line": 566
+  },
+  {
+    "file": "claude-jev/bench/readwindow.ts",
+    "goal": "Which origins can a selected window report?",
+    "line": 64
+  },
+  {
+    "file": "claude-jev/bench/readwindow.ts",
+    "goal": "Which case property supplies the task text used by the scoring call?",
+    "line": 192
+  },
+  {
+    "file": "claude-jev/bench/readwindow.ts",
+    "goal": "Which origin label is assigned to the head baseline window?",
+    "line": 320
+  },
+  {
+    "file": "claude-jev/bench/readwindow.ts",
+    "goal": "How is the pending ledger-row promise wired to its resolver?",
+    "line": 448
+  },
+  {
+    "file": "claude-jev/bench/readwindow.ts",
+    "goal": "Which action runs when the command-line help flag is present?",
+    "line": 576
+  },
+  {
+    "file": "claude-jev/bench/run.ts",
+    "goal": "Which sources are combined before the coach limits its file list?",
+    "line": 54
+  },
+  {
+    "file": "claude-jev/bench/run.ts",
+    "goal": "How does a regex grader decide whether its pattern matched the selected text?",
+    "line": 179
+  },
+  {
+    "file": "claude-jev/bench/run.ts",
+    "goal": "Which environment feature flag is enabled for a spawned Claude run?",
+    "line": 292
+  },
+  {
+    "file": "claude-jev/bench/run.ts",
+    "goal": "How are requested arm names resolved before the run loop?",
+    "line": 413
+  },
+  {
+    "file": "claude-jev/bench/run.ts",
+    "goal": "What result value is extracted from the plugin ledger response?",
+    "line": 514
+  },
+  {
+    "file": "claude-jev/evals/build-fixture-vocab.ts",
+    "goal": "What does the generated count helper return when a level filter is supplied or omitted?",
+    "line": 366
+  },
+  {
+    "file": "claude-jev/evals/build-fixture-vocab.ts",
+    "goal": "When does the retry helper stop and rethrow an error?",
+    "line": 560
+  },
+  {
+    "file": "claude-jev/evals/build-fixture-vocab.ts",
+    "goal": "Which lookup supplies the record before a generated revision continues?",
+    "line": 934
+  },
+  {
+    "file": "claude-jev/evals/build-fixture-vocab.ts",
+    "goal": "Which configuration values are exposed by the generated app description?",
+    "line": 1310
+  },
+  {
+    "file": "claude-jev/evals/build-fixture-vocab.ts",
+    "goal": "Which configuration is loaded before the generated app health check is evaluated?",
+    "line": 1682
+  },
+  {
+    "file": "claude-jev/evals/build-fixture-wide.ts",
+    "goal": "How is a generated identifier suffix formatted?",
+    "line": 192
+  },
+  {
+    "file": "claude-jev/evals/build-fixture-wide.ts",
+    "goal": "How is the retry count clamped for an error count?",
+    "line": 560
+  },
+  {
+    "file": "claude-jev/evals/build-fixture-wide.ts",
+    "goal": "Which updated record is produced after applying a generated patch?",
+    "line": 935
+  },
+  {
+    "file": "claude-jev/evals/build-fixture-wide.ts",
+    "goal": "Which route module is imported first by the generated app?",
+    "line": 1309
+  },
+  {
+    "file": "claude-jev/evals/build-fixture-wide.ts",
+    "goal": "What condition makes the generated app check pass?",
+    "line": 1683
+  },
+  {
+    "file": "claude-jev/hooks/register.ts",
+    "goal": "Which optional decision field stores the chosen model?",
+    "line": 145
+  },
+  {
+    "file": "claude-jev/hooks/register.ts",
+    "goal": "What default timeout is used when the plugin option is absent?",
+    "line": 457
+  },
+  {
+    "file": "claude-jev/hooks/register.ts",
+    "goal": "How much of the turn text is sent into the session routing question?",
+    "line": 724
+  },
+  {
+    "file": "claude-jev/hooks/register.ts",
+    "goal": "How are confident candidate positions chosen from the find scores?",
+    "line": 1028
+  },
+  {
+    "file": "claude-jev/hooks/register.ts",
+    "goal": "What fallback is used when no configured model survives validation?",
+    "line": 1303
+  },
+  {
+    "file": "claude-jev/tests/register.test.ts",
+    "goal": "What condition makes the mock UI log handler fail?",
+    "line": 122
+  },
+  {
+    "file": "claude-jev/tests/register.test.ts",
+    "goal": "How many network calls should a timed-out find request make?",
+    "line": 369
+  },
+  {
+    "file": "claude-jev/tests/register.test.ts",
+    "goal": "Which route should the fresh pane show after a post-compaction decision?",
+    "line": 617
+  },
+  {
+    "file": "claude-jev/tests/register.test.ts",
+    "goal": "What should the lane offer return after a downgrade?",
+    "line": 859
+  },
+  {
+    "file": "claude-jev/tests/register.test.ts",
+    "goal": "What status should be shown when a risky score is above threshold?",
+    "line": 1105
+  }
+]

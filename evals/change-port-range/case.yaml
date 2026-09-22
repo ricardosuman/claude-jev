@@ -1,0 +1,25 @@
+schema_version: "1.0"
+name: change-port-range
+tags: [local-change]
+context:
+  scaffold_script: scaffold.sh
+execution:
+  prompt: "Make parsePort throw an error when the port is outside 1-65535, and add tests for that in src/config.spec.ts."
+  max_turns: 12
+  timeout_seconds: 300
+  allowed_tools: [Read, Glob, Grep, Edit, Write, Bash]
+runs: 3
+graders:
+  - type: regex
+    name: "upper bound checked"
+    target: { source: file, path: src/config.ts }
+    pattern: "65535|65_535"
+  - type: regex
+    name: "throw tested"
+    target: { source: file, path: src/config.spec.ts }
+    pattern: "toThrow"
+  - type: regex
+    name: jev hooks ran (/jev registered)
+    target: trace
+    pattern: "\"name\":\"jev\",\"description\":\"Jev ledger"
+    arm: with-only

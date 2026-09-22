@@ -1,0 +1,20 @@
+schema_version: "1.0"
+name: hard-money
+tags: [hard]
+context:
+  scaffold_script: scaffold.sh
+execution:
+  prompt: "Please add allocate(total, currency, weights) to src/money.ts for splitting a payment between people or cost centres, e.g. allocate('100.00', 'USD', [1, 1, 1]) returns ['33.34', '33.33', '33.33']. Finance's rules: total is a decimal string, weights are non-negative integers (at least one positive), every share is a string with the currency's number of decimals from MINOR_UNITS, the shares always add up exactly to the total, leftover minor units go to the shares with the largest remainder (ties go to the earlier share), and a refund (negative total) splits exactly like the same positive amount with the sign flipped. Add a test or two."
+  max_turns: 25
+  timeout_seconds: 600
+  allowed_tools: [Read, Glob, Grep, Edit, Write, Bash]
+runs: 3
+graders:
+  - type: command
+    name: "hidden tests pass"
+    run: "cp \"$CASE_DIR/hidden.spec.ts\" src/ && bun test"
+  - type: regex
+    name: jev hooks ran (/jev registered)
+    target: trace
+    pattern: "\"name\":\"jev\",\"description\":\"Jev ledger"
+    arm: with-only

@@ -1,0 +1,25 @@
+schema_version: "1.0"
+name: debug-duration
+tags: [debug]
+context:
+  scaffold_script: scaffold.sh
+execution:
+  prompt: "`bun test` fails in this project: parseDuration() is wrong for minutes. Find the bug and fix it without changing any test."
+  max_turns: 15
+  timeout_seconds: 300
+  allowed_tools: [Read, Glob, Grep, Edit, Write, Bash]
+runs: 3
+graders:
+  - type: regex
+    name: "a minute is 60000 ms"
+    target: { source: file, path: src/config.ts }
+    pattern: "m:\\s*60_?000\\b"
+  - type: regex
+    name: "test left as it was"
+    target: { source: file, path: src/config.spec.ts }
+    pattern: "toBe\\(120_000\\)"
+  - type: regex
+    name: jev hooks ran (/jev registered)
+    target: trace
+    pattern: "\"name\":\"jev\",\"description\":\"Jev ledger"
+    arm: with-only
